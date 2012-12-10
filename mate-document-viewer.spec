@@ -10,12 +10,13 @@
 
 Summary:	MATE Document viewer
 Name:		mate-document-viewer
-Version:	1.2.1
-Release:	1
+Version:	1.4.0
+Release:	2
 License:	GPLv2+ and GFDL+
 Group:		Graphical desktop/GNOME
 URL:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/1.2/%{name}-%{version}.tar.xz
+Source0:	http://pub.mate-desktop.org/releases/1.4/%{name}-%{version}.tar.xz
+Patch0:		mate-document-viewer-1.4.0-rosa-doc_buildfix.patch
 
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	ghostscript
@@ -61,7 +62,6 @@ Group:		Graphical desktop/GNOME
 BuildRequires:	kpathsea-devel
 #gw just like xdvi, needed for rendering the fonts
 Requires:	texlive
-Requires:	texlive-texmf
 Requires:	%{name} = %{version}-%{release}
 
 %description dvi
@@ -102,11 +102,11 @@ GObject Introspection interface description for %{name}.
 %package -n %{devname}
 Group:		Development/C
 Summary:	MATE Document viewer library
-Requires:	%{libdocument} = %{version}-%{release}
-Requires:	%{libview} = %{version}-%{release}
-Requires:	%{girdocument} = %{version}-%{release}
-Requires:	%{girview} = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
+Requires:	%{libdocument} = %{version}
+Requires:	%{libview} = %{version}
+Requires:	%{girdocument} = %{version}
+Requires:	%{girview} = %{version}
+Provides:	%{name}-devel = %{EVRD}
 
 %description -n %{devname}
 This is the MATE Document viewer library, the shared parts of atril.
@@ -134,6 +134,8 @@ make LIBS='-lm -lz -lgmodule-2.0'
 
 %install
 %makeinstall_std
+
+desktop-file-edit --remove-category=MATE --add-category=X-MATE --add-category=2DGraphics %{buildroot}%{_datadir}/applications/atril.desktop
 
 %find_lang atril --with-gnome
 
