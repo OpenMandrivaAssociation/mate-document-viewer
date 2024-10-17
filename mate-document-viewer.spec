@@ -14,7 +14,7 @@ Version:	1.4.0
 Release:	2
 License:	GPLv2+ and GFDL+
 Group:		Graphical desktop/GNOME
-URL:		http://mate-desktop.org
+URL:		https://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/1.4/%{name}-%{version}.tar.xz
 Patch0:		mate-document-viewer-1.4.0-rosa-doc_buildfix.patch
 
